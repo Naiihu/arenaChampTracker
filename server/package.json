@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "type": "module",
   "description": "API for Arena Champ top 1 tracker",
   "main": "server.js",
   "scripts": {
@@ -29,6 +30,7 @@
   "dependencies": {
     "@tka85/dotenvenc": "^5.4.2",
     "express": "^4.21.2",
-    "pg": "^8.14.1"
+    "pg": "^8.14.1",
+    "server": "file:"
   }
 }
