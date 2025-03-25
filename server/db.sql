@@ -1,24 +1,24 @@
-CREATE SEQUENCE arenaCheckerIndexes START 1;
-
 CREATE SCHEMA "arenaChampTracker";
+
+CREATE SEQUENCE arenaCheckerIndexes START 1;
 
 CREATE TABLE "arenaChampTracker".champions (
     champion_id integer,
-    name varchar(50),
+    name varchar(50) NOT NULL,
     image varchar(50),
     primary key (champion_id)
 );
 
 CREATE TABLE "arenaChampTracker".players (
     player_id integer,
-    name varchar(16),
+    name varchar(16) NOT NULL,
     primary key (player_id)
 );
 
 CREATE TABLE "arenaChampTracker".stats (
     player_id integer,
     champion_id integer,
-    win boolean,
+    win boolean NOT NULL,
     primary key (player_id, champion_id)
 );
 
