@@ -6,6 +6,7 @@ CREATE TABLE "arenaChampTracker".champions (
     champion_id integer,
     name varchar(50) NOT NULL,
     image varchar(50),
+    riot_id integer,
     primary key (champion_id)
 );
 
@@ -36,11 +37,12 @@ CREATE OR REPLACE VIEW "arenaChampTracker".v_champions AS (
 CREATE
 OR REPLACE RULE insert_v_champions AS ON INSERT TO "arenaChampTracker".v_champions DO INSTEAD (
     INSERT INTO
-        "arenaChampTracker".champions (champion_id, name, image)
+        "arenaChampTracker".champions (champion_id, name, image, riot_id)
     VALUES (
             nextval('arenacheckerindexes'),
             new.name,
-            new.image
+            new.image,
+            new.riot_id
         )
     RETURNING
         *

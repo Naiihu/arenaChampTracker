@@ -20,12 +20,13 @@ async function registerChamps() {
     const json = await resp.json();
 
 
-    const query = 'INSERT INTO "arenaChampTracker".v_champions(name, image) VALUES($1, $2)';
+    const query = 'INSERT INTO "arenaChampTracker".v_champions(name, image, riot_id) VALUES($1, $2, $3)';
 
     for(const champ in json.data) {
         const values = [
             json.data[champ].name,
-            json.data[champ].image.full
+            json.data[champ].image.full,
+            parseInt(json.data[champ].key, 10)
         ];
 
         await cli.query(query, values);
