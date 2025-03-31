@@ -30,6 +30,8 @@
     "@tka85/dotenvenc": "^5.4.2",
     "express": "^4.21.2",
     "express-formidable": "^1.2.0",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0",
     "nodemon": "^3.1.9",
     "pg": "^8.14.1",
     "server": "file:"

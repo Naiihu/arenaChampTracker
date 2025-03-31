@@ -1,0 +1,103 @@
+body, html{
+    margin: 0;
+    background-color: #181a1b;
+    color: #e8e6e3;
+}
+
+header {
+    padding: 1dvh 0;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+
+    padding: 2dvh 0;
+}
+
+.dropdown-toggle, #filterChamps input {
+    position: relative;
+
+    height: 2rem;
+    width: 20dvw;
+    font-size: 1.5rem;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.dropdown-toggle, #filterChamps input, .dropdown {
+    padding: 0.5dvh 0.5dvw;
+}
+
+.dropdown-toggle::after {
+    content: 'v';
+    position: absolute;
+
+    right: 0.5dvw;
+    bottom: 0.25dvh;
+
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+.dropdown {
+    display: none;
+
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    z-index: 100;
+
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 0.5dvh;
+
+    width: calc(100% - 2dvw);
+    font-size: 1.5rem;
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+
+.dropdown-item {
+    all: unset;
+    cursor: pointer;
+
+    border-bottom: rgba(119, 119, 119, 0.75);
+
+    width: 100%;
+    text-align: left;
+}
+
+section#championsList {
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-auto-rows: 25dvh;
+    justify-items: center;
+
+    row-gap: 10dvh;
+    filter: drop-shadow(0 5px 10px rgba(255, 255, 255, 5%));
+}
+
+.champion {
+    margin: 0;
+    padding: 2dvh 0;
+
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-radius: 5px;
+    box-shadow: inset 5px -5px rgba(81, 148, 236), inset -5px 0 rgba(81, 148, 236);
+
+    font-size: 2rem;
+}
+
+.champion.win {
+    background: linear-gradient(rgba(248, 216, 73, 0) 0%, rgba(248, 216, 73, 75%) 50%, rgb(248, 216, 73) 100%);
+    box-shadow: inset 5px -5px rgb(248, 216, 73), inset -5px 0 rgba(248, 216, 73);
+}

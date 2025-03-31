@@ -125,8 +125,6 @@ CREATE
 OR REPLACE RULE delete_v_stats AS ON DELETE TO "arenaChampTracker".v_stats DO INSTEAD (
     DELETE FROM "arenaChampTracker".stats
     WHERE
-        stats.player_id = player_id
-        AND stats.champion_id = champion_id
-    RETURNING
-        *
+        stats.player_id = old.player_id
+        AND stats.champion_id = old.champion_id
 );
