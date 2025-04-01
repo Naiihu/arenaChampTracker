@@ -4,6 +4,7 @@ import pg from 'pg';
 import { decrypt } from '@tka85/dotenvenc';
 import https from 'https'
 import http from 'http'
+import { readFileSync } from 'fs';
 
 const app = express();
 app.use(formidable());
@@ -68,7 +69,13 @@ function createRoutesJson() {
                 case 'PUT':
                     description += 'Update';
                     break;
+                case 'DELETE':
+                    description += 'Delete';
+                    break;
             }
+
+            console.log(path);
+
 
             if(!currPath[method] && aPath.indexOf(path) === 0) {
                 currPath[method] = [];
@@ -190,7 +197,7 @@ app.get('/stats/:playerName/:champName', async (req, res) => {
     }
 });
 
-app.post('/stats/byName', async (req, res) => {
+app.post('/stats/:byName', async (req, res) => {
     const body = req.fields;
 
     try {
@@ -205,7 +212,7 @@ app.post('/stats/byName', async (req, res) => {
     }
 });
 
-app.post('/stats/byId', async (req, res) => {
+app.post('/stats/:byId', async (req, res) => {
     const body = req.fields;
 
     try {
@@ -217,7 +224,7 @@ app.post('/stats/byId', async (req, res) => {
     }
 });
 
-app.put('/stats/byName', async (req, res) => {
+app.put('/stats/:byName', async (req, res) => {
     const body = req.fields;
 
     try {
@@ -232,7 +239,7 @@ app.put('/stats/byName', async (req, res) => {
     }
 });
 
-app.put('/stats/byId', async (req, res) => {
+app.put('/stats/:byId', async (req, res) => {
     const body = req.fields;
 
     try {
@@ -244,7 +251,7 @@ app.put('/stats/byId', async (req, res) => {
     }
 });
 
-app.delete('/stats/byName', async (req, res) => {
+app.delete('/stats/:byName', async (req, res) => {
     const body = req.fields;
 
     try {
@@ -259,7 +266,7 @@ app.delete('/stats/byName', async (req, res) => {
     }
 });
 
-app.delete('/stats/byId', async (req, res) => {
+app.delete('/stats/:byId', async (req, res) => {
     const body = req.fields;
 
     try {
@@ -271,8 +278,13 @@ app.delete('/stats/byId', async (req, res) => {
     }
 });
 
+const options = {
+    key: readFileSync(process.env.keypath),
+    cert: readFileSync(process.env.certpath)
+};
+
 const httpServer = http.createServer(app);
-const httpsServer = https.createServer({}, app);
+const httpsServer = https.createServer(options, app);
 
 httpServer.listen(httpPort);
 httpsServer.listen(httpsPort);
